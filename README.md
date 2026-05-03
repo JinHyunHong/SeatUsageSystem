@@ -7,10 +7,10 @@
 
 ## Tech Stack
 
-- C#
-- WPF (.NET)
+- C# 13 (.NET 9.0)
+- WPF (Desktop Application)
 - Entity Framework Core
-- SQLite
+- SQLite (Local Database)
 
 ---
 
