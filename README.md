@@ -9,6 +9,7 @@
 
 - C# 13 (.NET 9.0)
 - WPF (Desktop Application)
+- WPF UI (Fluent UI Framework)
 - Entity Framework Core
 - SQLite (Local Database)
 
