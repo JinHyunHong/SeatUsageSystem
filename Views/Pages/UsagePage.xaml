@@ -1,0 +1,189 @@
+﻿<Page
+  x:Class="SeatUsageSystem.Views.Pages.UsagePage"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:helpers="clr-namespace:SeatUsageSystem.Helpers"
+  xmlns:local="clr-namespace:SeatUsageSystem.Views.Pages"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+  Title="UsagePage"
+  d:DataContext="{d:DesignInstance local:UsagePage,
+                                     IsDesignTimeCreatable=False}"
+  d:DesignHeight="450"
+  d:DesignWidth="800"
+  ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+  ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+  Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+  mc:Ignorable="d"
+>
+  <Grid VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ui:TextBlock Grid.Row="0" Text="좌석 현황" FontSize="20" FontWeight="Bold"/>
+            <ui:CardControl Grid.Row="1"
+                CornerRadius="12"
+                Padding="10"
+                Margin="0,0,20,0"
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Top">
+
+                <Grid Width="500" Height="700" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+                    <!-- 배경 -->
+                    <Image Source="/Assets/room_layout_dark.png"
+                   Stretch="Fill"
+                   Opacity="0.28"/>
+                    
+                    <!-- 범례 (이미지 위) -->
+                    <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Margin="10">
+                        <Button Width="20" Height="20" Background="#4CAF50"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="이용 가능" Foreground="White" Margin="5,0,10,0"/>
+
+                        <Button Width="20" Height="20" Background="#E53935"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="이용 중" Foreground="White" Margin="5,0,10,0"/>
+
+                        <Button Width="20" Height="20" Background="#808080"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="이용 불가" Foreground="White" Margin="5,0,10,0"/>
+
+                        <Button Width="20" Height="20" Background="#1E88E5"/>
+                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="선택됨" Foreground="White" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <!-- 좌석 --><!--
+                    <Canvas Width="500" Height="700">
+                    
+                        --><!-- 상단 벽면 --><!--
+                        <Button Content="A1" Background="#4CAF50" Width="45" Height="45" Canvas.Left="55" Canvas.Top="50"/>
+                        <Button Content="A2" Width="45" Height="45" Canvas.Left="105" Canvas.Top="50"/>
+                        <Button Content="A3" Width="45" Height="45" Canvas.Left="155" Canvas.Top="50"/>
+                        <Button Content="A4" Width="45" Height="45" Canvas.Left="205" Canvas.Top="50"/>
+
+                        --><!-- 중앙 테이블 좌측 --><!--
+                        <Button Content="B1" Background="#E53935" Width="45" Height="45" Canvas.Left="276" Canvas.Top="210"/>
+                        <Button Content="B3" Width="45" Height="45" Canvas.Left="276" Canvas.Top="263"/>
+
+                        --><!-- 중앙 테이블 우측 --><!--
+                        <Button Content="B2" Width="45" Height="45" Canvas.Left="328" Canvas.Top="210"/>
+                        <Button Content="B4" Width="45" Height="45" Canvas.Left="328" Canvas.Top="263"/>
+
+                        --><!-- 우측 벽면 --><!--
+                        <Button Content="C1" Width="45" Height="45" Canvas.Left="420" Canvas.Top="175"/>
+                        <Button Content="C2" Width="45" Height="45" Canvas.Left="420" Canvas.Top="230"/>
+                        <Button Content="C3" Width="45" Height="45" Canvas.Left="420" Canvas.Top="285"/>
+                        <Button Content="C4" Width="45" Height="45" Canvas.Left="420" Canvas.Top="340"/>
+                        <Button Content="C5" Width="45" Height="45" Canvas.Left="420" Canvas.Top="395"/>
+
+                        --><!-- 좌측 벽면 --><!--
+                        <Button Content="D1" Width="45" Height="45" Canvas.Left="37" Canvas.Top="190"/>
+                        <Button Content="D2" Width="45" Height="45" Canvas.Left="37" Canvas.Top="250"/>
+                        <Button Content="D3" Width="45" Height="45" Canvas.Left="37" Canvas.Top="310"/>
+
+                        <StackPanel Orientation="Horizontal" 
+                                    Margin="10"
+                                    Canvas.Left="150" Canvas.Top="660">
+                            --><!-- 현재 위치 (고정) --><!--
+                            <Ellipse Width="18" Height="18" Fill="Orange"/>
+                            <TextBlock VerticalAlignment="Center" FontSize="14" Text="현재 위치" Foreground="White" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </Canvas>-->
+
+
+                    <!-- 좌석 -->
+                    <Canvas Width="500" Height="700">
+
+                        <ItemsControl ItemsSource="{Binding ViewModel.Seats}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas Width="500" Height="700"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemContainerStyle>
+                                <Style>
+                                    <Setter Property="Canvas.Left" Value="{Binding X}" />
+                                    <Setter Property="Canvas.Top" Value="{Binding Y}" />
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Content="{Binding Label}" 
+                                            Command="{Binding DataContext.ViewModel.SelectSeatCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                            CommandParameter="{Binding}"
+                                            Width="45"
+                                            Height="45">
+                                        <Button.Background>
+                                            <MultiBinding Converter="{StaticResource SeatColorConverter}">
+                                                <Binding Path="IsSelected"/>
+                                                <Binding Path="Status"/>
+                                            </MultiBinding>
+                                        </Button.Background>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <StackPanel Orientation="Horizontal" 
+                                    Margin="10"
+                                    Canvas.Left="150" Canvas.Top="660">
+                            <!-- 현재 위치 (고정) -->
+                            <Ellipse Width="18" Height="18" Fill="Orange"/>
+                            <TextBlock VerticalAlignment="Center" FontSize="14" Text="현재 위치" Foreground="White" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </Canvas>
+                </Grid>
+
+            </ui:CardControl>
+        </Grid>
+        <Grid Grid.Column="1" x:Name="grdSelect" Visibility="{Binding ViewModel.IsUsing, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ui:TextBlock Grid.Row="0" Text="선택 내역" FontSize="20" FontWeight="Bold"/>
+
+            <ui:TextBlock Grid.Row="1" Margin="0,0,0,10">
+                <Run Text="선택된 좌석 "/>
+                <Run Text="*" Foreground="OrangeRed"/>
+            </ui:TextBlock>
+            <TextBlock Grid.Row="2" x:Name="tbkSelectedSeat" Text="{Binding ViewModel.SelectedSeat.Label, Mode=OneWay}" FontSize="15" Margin="0,0,0,20"/>
+
+            <ui:Button Grid.Row="3" x:Name="btnStartUsage" Content="이용 시작" Command="{Binding ViewModel.StartUsageCommand}" HorizontalAlignment="Stretch" Height="40" Background="#4CAF50" Foreground="White" FontWeight="Bold" Margin="0,0,0,10"/>
+        </Grid>
+
+        <!-- 현재 이용중 정보 UI -->
+        <Grid Grid.Column="1" x:Name="grdInUse" Visibility="{Binding ViewModel.IsUsing, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ui:TextBlock Grid.Row="0" Text="이용 내역" FontSize="20" FontWeight="Bold"/>
+
+            <ui:TextBlock Grid.Row="1" Margin="0,0,0,10">
+                <Run Text="이용 중인 좌석 "/>
+                <Run Text="*" Foreground="OrangeRed"/>
+            </ui:TextBlock>
+            <TextBlock Grid.Row="2" x:Name="tbkUserInUseSeat" Text="{Binding ViewModel.CurrentSeatLabel, Mode=OneWay}" FontSize="15" Margin="0,0,0,20"/>
+
+            <ui:Button Grid.Row="3" x:Name="btnEndUsage" Content="이용 종료" Command="{Binding ViewModel.EndUsageCommand}" HorizontalAlignment="Stretch" Height="40" Background="#E53935" Foreground="White" FontWeight="Bold" Margin="0,0,0,10"/>
+        </Grid>
+    </Grid>
+</Page>
