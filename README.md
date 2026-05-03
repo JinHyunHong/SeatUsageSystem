@@ -33,6 +33,4 @@
 ## Getting Started
 
 ```bash
-git clone https://github.com/your-repo.git
-cd SeatUsageSystem
-dotnet run
+git clone https://github.com/JinHyunHong/SeatUsageSystem.git
