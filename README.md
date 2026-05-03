@@ -30,6 +30,18 @@
 
 ---
 
+## Database Design
+
+- ERD Image
+
+  
+  ![ERD](./Assets/ERD.png)
+
+  
+- 🔗 [Interactive ERD (dbdiagram.io)](https://dbdiagram.io/d/69f7299cc6a36f9c1bea07bc)
+
+---
+
 ## Getting Started
 
 ```bash
