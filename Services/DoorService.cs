@@ -29,9 +29,10 @@ namespace SeatUsageSystem.Services
 
             var last = await _historyRepository.GetLastAsync(usageId);
 
+            // 이력이 없으면 OUT 상태로 간주 (즉, IN 가능 상태)
             if (last == null)
             {
-                throw new InvalidOperationException("이용 이력이 존재하지 않습니다.");
+                return InOutStatus.Out;
             }
 
             if (string.IsNullOrWhiteSpace(last.InOutCd))
