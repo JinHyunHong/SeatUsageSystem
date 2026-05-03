@@ -9,7 +9,7 @@
 
 - C# 13 (.NET 9.0)
 - WPF (Desktop Application)
-- WPF UI (Fluent UI Framework)
+- [WPF UI (Fluent UI Framework)](https://wpfui.lepo.co/index.html)
 - Entity Framework Core
 - SQLite (Local Database)
 
