@@ -44,6 +44,10 @@ namespace SeatUsageSystem.ViewModels.Pages
         [ObservableProperty]
         private Usage? _currentUsage;
 
+        public string? CurrentSeatLabel => Seats.FirstOrDefault(x => x.Id == CurrentUsage?.SeatId)?.Label;
+
+        public bool IsUsing => CurrentUsage != null;
+
         #endregion
 
         #region CONSTRUCTOR
@@ -195,10 +199,6 @@ namespace SeatUsageSystem.ViewModels.Pages
         #endregion
 
         #region METHODS
-
-        public string? CurrentSeatLabel => Seats.FirstOrDefault(x => x.Id == CurrentUsage?.SeatId)?.Label;
-
-        public bool IsUsing => CurrentUsage != null;
 
         private async Task InitializeViewModelAsync()
         {
