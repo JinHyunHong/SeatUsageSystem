@@ -13,7 +13,7 @@ namespace SeatUsageSystem.Helpers
             return (bool)value ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        // UI 상태를 다시 VM으로 보내는 기능
+        // UI 상태를 다시 ViewModel으로 보내는 기능
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return (Visibility)value == Visibility.Visible;

@@ -41,6 +41,7 @@ namespace SeatUsageSystem.Helpers
                 _ => ToBrush("#1E88E5") // Blue
             };
         }
+
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         => throw new NotImplementedException();
     }

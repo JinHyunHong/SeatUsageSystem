@@ -13,6 +13,7 @@ namespace SeatUsageSystem.Interfaces
         Task<EndUsageResultDto> EndUsageAsync(int memberId);
 
         Task<int> GetTodayUsageCountAsync(int? areaId = null);
+        
         Task<List<Usage>> GetTodayUsagesAsync(int? areaId = null);
 
         Task<List<Usage>> GetUsagesByDateRangeAsync(DateOnly startDate, DateOnly endDate, int? areaId = null);

@@ -66,7 +66,7 @@ namespace SeatUsageSystem.ViewModels.Pages
 
             if (!ValidatePhoneNumber(digits))
             {
-                _dialogService.ShowMessage("전화번호 형식이 올바르지 않습니다.");
+                _dialogService.ShowMessage("전화번호 형식이 올바르지 않습니다.\n010으로 시작하는 11자리 휴대폰 번호를 입력해 주세요.");
                 return;
             }
 
@@ -149,25 +149,13 @@ namespace SeatUsageSystem.ViewModels.Pages
         /// <returns></returns>
         private bool ValidatePhoneNumber(string digits)
         {
-            if (digits.Length < 9 || digits.Length > 11)
-            {
-                return false;
-            }
-
-            // 서울 지역번호(02)로 시작하는 경우(9 ~ 10자리)
-            if (digits.StartsWith("02"))
-            {
-                return digits.Length is 9 or 10;
-            }
-
             // 휴대폰 번호(010)로 시작하는 경우(11자리)
             if (digits.StartsWith("010"))
             {
                 return digits.Length == 11;
             }
 
-            // 031, 051, 064 등 그 외 지역번호(10자리, 11자리)
-            return digits.Length is 10 or 11;
+            return false;
         }
 
         
