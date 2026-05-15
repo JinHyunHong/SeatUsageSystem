@@ -5,6 +5,16 @@
 
 ---
 
+## Environment
+- IDE : Visual Studio 2022
+- OS : Windows 10+
+- Runtime : .NET 9.0
+- Language : C# 13
+- UI : WPF (WPF UI - Fluent Design)
+- Database : SQLite (Local)
+
+---
+
 ## Tech Stack
 
 - C# 13 (.NET 9.0)
